@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40%;
+            height: 30%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+	.container::after {
+            content: "HI IM SIRISH";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-family: Times New Roman, sans-serif;
+	    font-size: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: -1;
+        }
+
+        .box {
+            width: 20%;
+            height: 100%;
+            position: relative;
+        }
+
+        #box1 {background-color: purple;}
+        #box2 {background-color: pink;}
+        #box3 {background-color: lightblue;}
+        #box4 {background-color: lightgreen;}
+        #box5 {background-color: orange;}
+
+ 	@keyframes moveUpDown1 {
+            0% {top: 0;}
+	    50%{top: 160px;}
+            100% {top: 0;}
+	}
+        @keyframes moveUpDown2 {
+            0% {top: 0;}
+            50% {top: 230px;}
+            100% {top: 0;}
+        }
+
+        @keyframes moveUpDown3 {
+            0% {top: 0;}
+            50% {top: 200px;}
+            100% {top: 0;}
+        }
+
+        @keyframes moveUpDown4 {
+            0% {top: 0;}
+            50% {top: 230px;}
+            100% {top: 0;}
+        }
+
+        @keyframes moveUpDown5 {
+            0% {top: 0;}
+            50% {top: 160px;}
+            100% {top: 0;}
+        }
+
+        .button-container {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: space-between;
+            width: 400px;
+        }
+
+        button {
+            width: 60px;
+            height: 30px;
+        }
+
+        #start {background-color: lightgreen;}
+        #stop {background-color: lightcoral;}
+        #reset {background-color: lightblue;}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="box1" class="box"></div>
+    <div id="box2" class="box"></div>
+    <div id="box3" class="box"></div>
+    <div id="box4" class="box"></div>
+    <div id="box5" class="box"></div>
+</div>
+
+<div class="button-container">
+    <button id="start" onclick="startAnimation()">Start</button>
+    <button id="stop" onclick="stopAnimation()">Stop</button>
+    <button id="reset" onclick="resetAnimation()">Reset</button>
+</div>
+
+<script>
+    var boxes = document.getElementsByClassName("box");
+    var animationRunning = false;
+
+    function startAnimation() {
+        if (!animationRunning) {
+            for (var i = 0; i < boxes.length; i++) {
+                boxes[i].style.animation = "moveUpDown" + (i+1) + " 2s infinite";
+            }
+            animationRunning = true;
+        }
+    }
+
+    function stopAnimation() {
+        if (animationRunning) {
+            for (var i = 0; i < boxes.length; i++) {
+                boxes[i].style.animationPlayState = "paused";
+            }
+            animationRunning = false;
+        }
+    }
+
+    function resetAnimation() {
+        for (var i = 0; i < boxes.length; i++) {
+            boxes[i].style.animation = "none";
+            boxes[i].offsetHeight; 
+            boxes[i].style.animation = null; 
+        }
+        animationRunning = false;
+    }
+</script>
+
+</body>
+</html>
